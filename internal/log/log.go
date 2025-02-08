@@ -79,6 +79,10 @@ func (l *Logger) log(level Level, message string, properties map[string]string) 
 	return l.out.Write(line)
 }
 
+func (l *Logger) Write(bytes []byte) (int, error) {
+	return l.log(LevelError, string(bytes), nil)
+}
+
 func (l *Logger) LogInfo(message string, properties map[string]string) {
 	l.log(LevelInfo, message, properties)
 }
