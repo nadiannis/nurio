@@ -5,8 +5,6 @@ import (
 	"log"
 )
 
-const version = "0.1.0"
-
 type config struct {
 	port int
 	env  string

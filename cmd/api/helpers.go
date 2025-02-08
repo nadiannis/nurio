@@ -3,11 +3,11 @@ package main
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/nadiannis/nurio/internal/types"
 )
 
-type envelope map[string]any
-
-func (app *application) writeJSON(w http.ResponseWriter, status int, data envelope, headers http.Header) error {
+func (app *application) writeJSON(w http.ResponseWriter, status int, data types.Envelope, headers http.Header) error {
 	jsonBytes, err := json.Marshal(data)
 	if err != nil {
 		return err

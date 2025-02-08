@@ -2,14 +2,16 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/nadiannis/nurio/internal/types"
 )
 
 func (app *application) healthcheck(w http.ResponseWriter, r *http.Request) {
-	env := envelope{
+	env := types.Envelope{
 		"status": "available",
 		"system_info": map[string]string{
 			"environment": app.config.env,
-			"version":     version,
+			"version":     types.APIVersion,
 		},
 	}
 
