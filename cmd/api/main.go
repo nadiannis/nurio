@@ -2,7 +2,9 @@ package main
 
 import (
 	"flag"
-	"log"
+	"os"
+
+	"github.com/nadiannis/nurio/internal/log"
 )
 
 type config struct {
@@ -12,6 +14,7 @@ type config struct {
 
 type application struct {
 	config config
+	logger *log.Logger
 }
 
 func main() {
@@ -22,9 +25,13 @@ func main() {
 
 	flag.Parse()
 
+	logger := log.New(os.Stdout, log.LevelInfo)
+
 	app := &application{
 		config: cfg,
+		logger: logger,
 	}
 
-	log.Fatal(app.serve())
+	err := app.serve()
+	logger.LogFatal(err, nil)
 }

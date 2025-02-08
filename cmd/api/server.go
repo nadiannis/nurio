@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"time"
 )
@@ -16,7 +15,10 @@ func (app *application) serve() error {
 		WriteTimeout: 30 * time.Second,
 	}
 
-	log.Printf("starting API %s server on :%d\n", app.config.env, app.config.port)
+	app.logger.LogInfo("starting API server", map[string]string{
+		"addr": server.Addr,
+		"env":  app.config.env,
+	})
 	err := server.ListenAndServe()
 	if err != nil {
 		return err
