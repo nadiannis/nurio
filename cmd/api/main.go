@@ -33,5 +33,7 @@ func main() {
 	}
 
 	err := app.serve()
-	logger.LogFatal(err, nil)
+	if err != nil {
+		logger.LogFatal(err, nil)
+	}
 }
